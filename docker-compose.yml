@@ -1,0 +1,36 @@
+version: "3.8"
+
+services:
+  nginx:
+    build:
+      context: ./nginx
+      dockerfile: Dockerfile
+    ports:
+      - 80:80
+  api:
+    build:
+      context: ./api
+      dockerfile: Dockerfile
+    volumes:
+      - ./api/src:/usr/src/app/src
+      - ./api/options.json:/usr/src/app/options.json
+    ports:
+      - 5000:5000
+    links:
+      - mongodb
+    restart: always
+  mongodb:
+    image: mongo
+    container_name: mongodb
+    environment:
+      - MONGO_INITDB_DATABASE=participants
+      - MONGO_INITDB_ROOT_USERNAME=user
+      - MONGO_INITDB_ROOT_PASSWORD=password
+      - PUID=1000
+      - PGID=1000
+    volumes:
+      - ./mongodb/mongo-entrypoint/:/docker-entrypoint-initdb.d/
+      - ./mongodb/database:/data/db
+    ports:
+      - 27017:27017
+    restart: always

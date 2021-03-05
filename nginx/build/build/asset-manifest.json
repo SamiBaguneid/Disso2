@@ -1,0 +1,34 @@
+{
+  "files": {
+    "main.css": "/static/css/main.cc93133c.chunk.css",
+    "main.js": "/static/js/main.381249e2.chunk.js",
+    "main.js.map": "/static/js/main.381249e2.chunk.js.map",
+    "runtime-main.js": "/static/js/runtime-main.02b0d242.js",
+    "runtime-main.js.map": "/static/js/runtime-main.02b0d242.js.map",
+    "static/css/2.658248ec.chunk.css": "/static/css/2.658248ec.chunk.css",
+    "static/js/2.7dbc200a.chunk.js": "/static/js/2.7dbc200a.chunk.js",
+    "static/js/2.7dbc200a.chunk.js.map": "/static/js/2.7dbc200a.chunk.js.map",
+    "index.html": "/index.html",
+    "static/css/2.658248ec.chunk.css.map": "/static/css/2.658248ec.chunk.css.map",
+    "static/css/main.cc93133c.chunk.css.map": "/static/css/main.cc93133c.chunk.css.map",
+    "static/js/2.7dbc200a.chunk.js.LICENSE.txt": "/static/js/2.7dbc200a.chunk.js.LICENSE.txt",
+    "static/media/blurredPhoto.afa0c1e0.png": "/static/media/blurredPhoto.afa0c1e0.png",
+    "static/media/emptyMessages.060837d7.png": "/static/media/emptyMessages.060837d7.png",
+    "static/media/homeBackground.0e6b7f0f.png": "/static/media/homeBackground.0e6b7f0f.png",
+    "static/media/iphone8.17a9a3f2.png": "/static/media/iphone8.17a9a3f2.png",
+    "static/media/message.81cfa7fe.PNG": "/static/media/message.81cfa7fe.PNG",
+    "static/media/message1.7212a6ca.png": "/static/media/message1.7212a6ca.png",
+    "static/media/messageIcon.3b59bc8a.png": "/static/media/messageIcon.3b59bc8a.png",
+    "static/media/messageScreen1.59cba014.png": "/static/media/messageScreen1.59cba014.png",
+    "static/media/messageScreen2.ce66ac39.png": "/static/media/messageScreen2.ce66ac39.png",
+    "static/media/numKeyboard.258d1979.jpg": "/static/media/numKeyboard.258d1979.jpg",
+    "static/media/safariIcon.be2beab1.png": "/static/media/safariIcon.be2beab1.png"
+  },
+  "entrypoints": [
+    "static/js/runtime-main.02b0d242.js",
+    "static/css/2.658248ec.chunk.css",
+    "static/js/2.7dbc200a.chunk.js",
+    "static/css/main.cc93133c.chunk.css",
+    "static/js/main.381249e2.chunk.js"
+  ]
+}
