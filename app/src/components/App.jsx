@@ -20,14 +20,16 @@ export default class App extends Component {
     super(props);
     //const rand = Math.floor(1 + Math.random() * 4);
     var rand;
-    getOption().then(data => {
-      rand = data;
+    this.getOption().then(data => {
+      console.log(data);
+      console.log(data.option);
+      this.updateOption(data.option);
     });
     console.log(rand);
     this.state = {
       t0: undefined,
       page: 1,
-      option: rand,
+      option: undefined,
       highestPage: 1,
       safari: false,
       demoMessageRead: false,
@@ -61,7 +63,7 @@ export default class App extends Component {
         ProlificCode: 24
       },
       questions: {
-        option: rand,
+        option: undefined,
         "Time Taken": undefined,
         "Autofill Used": "no",
         "Message Viewed": "no",
@@ -88,8 +90,17 @@ export default class App extends Component {
       "http://dissertation-experiment-sb.cs.ucl.ac.uk:5000/code"
     );
     const dataPromise = promise.then(response => response.data);
+    console.log(dataPromise);
     return dataPromise;
   };
+
+  updateOption = (num) => {
+    console.log("In updateOption");
+    console.log(num);
+    this.setState({option: num});
+    this.addState("option", num);
+  }
+     
 
   completeTask = () => {
     //change string to local ip address

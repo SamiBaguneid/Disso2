@@ -41,13 +41,13 @@ function incrementOptionsDict(option) {
 
 app.get("/code", function(req, res) {
   if (optionsDict[1] <= numInSelection) {
-    res.send(1);
+    res.send({option: 1});
   } else if (optionsDict[2] <= numInSelection) {
-    res.send(2);
-  } else if (optionsDict[2] <= numInSelection) {
-    res.send(3);
-  } else if (optionsDict[2] <= numInSelection) {
-    res.send(4);
+    res.send({option: 2});
+  } else if (optionsDict[3] <= numInSelection) {
+    res.send({option: 3});
+  } else if (optionsDict[4] <= numInSelection) {
+    res.send({option: 4});
   } else {
     console.log("I no longer care about results");
   }
