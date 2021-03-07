@@ -117,7 +117,7 @@ export default class App extends Component {
   completeTask = () => {
     //change string to local ip address
     axios
-      .post("http://localhost:5000/", qs.stringify(this.state.questions))
+      .post("http://dissertation-experiment-sb.cs.ucl.ac.uk:5000/", qs.stringify(this.state.questions))
       .then(res => {
         console.log(res);
         console.log(res.data);
@@ -356,7 +356,7 @@ export default class App extends Component {
               "Strongly Disagree",
               "I didn't have/use the autofill button"
             ]}
-            question="I found the prcoess of entering the login code into the website easy to use and understand."
+            question="I found the process of entering the login code into the website easy to use and understand."
             changePage={this.changePage}
             currentPage={this.state.pageNumbers.q2}
             addState={this.addState}

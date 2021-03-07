@@ -55,7 +55,7 @@ export default class AutofillPage extends Component {
       this.state.output === "449585" &&
       this.props.highestPage === this.props.pageNumbers.DemoAutofill
     ) {
-      this.props.changePage(this.props.pageNumbers.HiddenTask);
+      this.props.changePage(this.props.pageNumbers.BeginMain);
     } //change lower autofill code
     if (
       this.state.output === "099819" &&

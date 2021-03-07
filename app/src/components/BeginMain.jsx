@@ -16,7 +16,7 @@ class BeginMain extends Component {
         <div className="widthPadding explanationBox">
           <p>You have now completed the demo.</p>
           <p>
-            You will again be using this same saystem as shown during the demo
+            You will again be using this same system as shown during the demo
             to login to the website.
           </p>
           <p>

@@ -575,9 +575,11 @@ button:focus {
 
 .centreCode {
   text-align: center;
-  margin-top: 70%;
+  margin-top: 47.5%;
 }
 
 .pushBelowCode {
-  margin-top: 90%;
+  margin-left: 5%;
+  margin-right: 5%;
+  margin-top: 20%;
 }

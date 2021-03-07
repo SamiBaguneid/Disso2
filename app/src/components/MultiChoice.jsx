@@ -53,7 +53,7 @@ class MultiChoice extends Component {
                   checked={this.state.selectedOption === option}
                   onChange={this.onValueChange}
                 />
-                <label className="checkMark">{option}</label>
+                <span className="checkMark">{option}</span>
               </div>
             ))}
             <p className={this.state.error}>You need to select an option</p>
