@@ -86,16 +86,19 @@ export default class App extends Component {
       console.log("First attempt, local storage empty");
       this.getOption().then(data => {
         console.log(data);
-        console.log(data.option);
+        console.log(typeof(data.option));
         this.updateOption(data.option);
         localStorage.setItem("option", data.option);
       });
     } else {
       console.log("Using Local Storage");
-      this.updateOption(localStorage.getItem("option"));
+      const option = localStorage.getItem("option");
+      console.log(option);
+      console.log(typeof(parseInt(option)));
+      this.updateOption(parseInt(option));
+      console.log("Not the one before this");
     }
     console.log("Checking option in questions");
-    console.log(this.state.questions.option);
   };
 
   getOption = () => {
@@ -108,8 +111,8 @@ export default class App extends Component {
   };
 
   updateOption = num => {
-    this.setState({ option: num });
-    this.addState("option", num);
+    this.setState({option: num});
+    //this.addState("option", num);
   };
 
   completeTask = () => {
@@ -123,6 +126,9 @@ export default class App extends Component {
   };
 
   addState = (q, a) => {
+    console.log(q);
+    console.log(a);
+    console.log(this.state.questions); 
     const newQuestions = { ...this.state.questions, [q]: a };
     this.setState({ questions: newQuestions });
   };
