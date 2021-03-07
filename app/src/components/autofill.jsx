@@ -14,6 +14,7 @@ class Autofill extends Component {
       response = "099819";
       name = "Paypal";
     }
+    console.log(this.props.option);
     switch (this.props.option) {
       case 1:
         return (

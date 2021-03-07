@@ -18,10 +18,7 @@ import ProlificCode from "./ProlificCode";
 export default class App extends Component {
   constructor(props) {
     super(props);
-    //const rand = Math.floor(1 + Math.random() * 4);
-    var rand;
-    this.setOption();
-    console.log(rand);
+    this.updateOption = this.updateOption.bind(this);
     this.state = {
       t0: undefined,
       page: 1,
@@ -81,7 +78,17 @@ export default class App extends Component {
     };
   }
 
+  componentDidMount() {
+    this.setOption();
+  }
+
   setOption = () => {
+    /*
+    console.log(this.state);
+    setTimeout(function(){localStorage.getItem("option")},1000);
+    console.log(this.state);
+    this.setState({option: parseInt(localStorage.getItem("option"))});
+    */
     if (localStorage.getItem("option") === null) {
       console.log("First attempt, local storage empty");
       this.getOption().then(data => {
@@ -91,14 +98,11 @@ export default class App extends Component {
         localStorage.setItem("option", data.option);
       });
     } else {
+      console.log(this.state);
       console.log("Using Local Storage");
       const option = localStorage.getItem("option");
-      console.log(option);
-      console.log(typeof(parseInt(option)));
       this.updateOption(parseInt(option));
-      console.log("Not the one before this");
     }
-    console.log("Checking option in questions");
   };
 
   getOption = () => {
@@ -106,12 +110,12 @@ export default class App extends Component {
       "http://dissertation-experiment-sb.cs.ucl.ac.uk:5000/code"
     );
     const dataPromise = promise.then(response => response.data);
-    console.log(dataPromise);
     return dataPromise;
   };
 
-  updateOption = num => {
+  updateOption = (num) => {
     this.setState({option: num});
+    //setTimeout(function(){console.log(this.state.option)},1000);
     //this.addState("option", num);
   };
 
