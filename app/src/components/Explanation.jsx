@@ -15,21 +15,18 @@ export default class Explanation extends Component {
         </div>
         <div className="widthPadding explanationBox">
           <p>
-            1) This experiment is to look into the Usablility and Security of
-            the following system.
-          </p>
-          <p>2) The only type of interaction possible is clicking.</p>
-          <p>
-            3) You will begin with the demo, this allows you to explore the
-            system before the main task.
+            1) In this experiment you will be looking into the usability of the
+            system, and you will be questionned on this at the end. It will also
+            look at the security of the system.
           </p>
           <p>
-            4) Don't refresh the page otherwise you will have to redo the
-            experiment in its entirety
+            2) You will not be able to use your keyboard during this experiment.
+            You will be able to use your mouse, touchpad or touchscreen.
           </p>
+          <p>4) Do not refresh the page.</p>
           <p>
             5) Once you have submitted the questionaire at the end you will be
-            given a academic prolific code. Copy this and enter it in to
+            given an academic prolific code. Copy this and enter it in to
             Prolific Academic to confirm you have completed the task.
           </p>
         </div>

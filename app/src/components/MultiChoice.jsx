@@ -48,23 +48,19 @@ class MultiChoice extends Component {
               <div className="radioContainer">
                 <input
                   className="check"
-                  type="checkbox"
+                  type="radio"
                   value={option}
                   checked={this.state.selectedOption === option}
                   onChange={this.onValueChange}
                 />
-                <span className="checkMark">{option}</span>
+                <label className="checkMark">{option}</label>
               </div>
             ))}
             <p className={this.state.error}>You need to select an option</p>
             <input
               className="questionnaireButton questionnaireNext appleFont"
               type="submit"
-              value={
-                this.props.questionNum === this.props.numQuestions
-                  ? "Submit"
-                  : "Next"
-              }
+              value={"Next"}
             />
           </form>
           <button

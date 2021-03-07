@@ -4,7 +4,6 @@ import BeginDemo from "./BeginDemo";
 import Login from "./Login";
 import Disclaimer from "./Disclaimer";
 import AutofillPage from "./AutofillPage";
-import HiddenTask from "./HiddenTask";
 import BeginMain from "./BeginMain";
 import Messages from "./Messages";
 import Home from "./Home";
@@ -20,6 +19,7 @@ export default class App extends Component {
     super(props);
     this.updateOption = this.updateOption.bind(this);
     this.state = {
+      tStart: undefined,
       t0: undefined,
       page: 1,
       option: undefined,
@@ -34,29 +34,29 @@ export default class App extends Component {
         BeginDemo: 2,
         DemoLogin: 3,
         DemoAutofill: 4,
-        HiddenTask: 5,
-        BeginMain: 6,
-        Login: 7,
-        Autofill: 8,
-        WhichWebsite: 9,
-        Disclaimer: 10,
-        q2: 11,
-        q3: 12,
-        q4: 13,
-        q5: 14,
-        q6: 15,
-        q7: 16,
-        q8: 17,
-        q9: 18,
-        q10: 19,
-        q11: 20,
-        q12: 21,
-        q13: 22,
-        Complete: 23,
-        ProlificCode: 24
+        BeginMain: 5,
+        Login: 6,
+        Autofill: 7,
+        WhichWebsite: 8,
+        q2: 9,
+        q3: 10,
+        q4: 11,
+        q5: 12,
+        q6: 13,
+        q7: 14,
+        q8: 15,
+        q9: 16,
+        q10: 17,
+        q11: 18,
+        q12: 19,
+        q13: 20,
+        q14: 21,
+        Complete: 22,
+        ProlificCode: 23
       },
       questions: {
         option: undefined,
+        "Total Time": undefined,
         "Time Taken": undefined,
         "Autofill Used": "no",
         "Message Viewed": "no",
@@ -72,9 +72,10 @@ export default class App extends Component {
         10: undefined,
         11: undefined,
         12: undefined,
-        13: undefined
+        13: undefined,
+        14: undefined
       },
-      numQuestions: 13
+      numQuestions: 14
     };
   }
 
@@ -83,17 +84,11 @@ export default class App extends Component {
   }
 
   setOption = () => {
-    /*
-    console.log(this.state);
-    setTimeout(function(){localStorage.getItem("option")},1000);
-    console.log(this.state);
-    this.setState({option: parseInt(localStorage.getItem("option"))});
-    */
     if (localStorage.getItem("option") === null) {
       console.log("First attempt, local storage empty");
       this.getOption().then(data => {
         console.log(data);
-        console.log(typeof(data.option));
+        console.log(typeof data.option);
         this.updateOption(data.option);
         localStorage.setItem("option", data.option);
       });
@@ -113,8 +108,8 @@ export default class App extends Component {
     return dataPromise;
   };
 
-  updateOption = (num) => {
-    this.setState({option: num});
+  updateOption = num => {
+    this.setState({ option: num });
     //setTimeout(function(){console.log(this.state.option)},1000);
     //this.addState("option", num);
   };
@@ -132,7 +127,7 @@ export default class App extends Component {
   addState = (q, a) => {
     console.log(q);
     console.log(a);
-    console.log(this.state.questions); 
+    console.log(this.state.questions);
     const newQuestions = { ...this.state.questions, [q]: a };
     this.setState({ questions: newQuestions });
   };
@@ -210,7 +205,11 @@ export default class App extends Component {
           <div className="homeButtonContainer">
             {this.homeHelpBox()}
             <button
-              onClick={() => this.changePage(-1, this.state.page)}
+              onClick={() =>
+                this.state.highestPage >= this.state.pageNumbers.DemoLogin
+                  ? this.changePage(-1, this.state.page)
+                  : null
+              }
               className="homeButton"
             ></button>
           </div>
@@ -247,6 +246,9 @@ export default class App extends Component {
         );
         break;
       case this.state.pageNumbers.Explanation:
+        if (this.state.tStart === undefined) {
+          this.setState({ tStart: performance.now() });
+        }
         return (
           <Explanation
             pageNumbers={this.state.pageNumbers}
@@ -283,14 +285,6 @@ export default class App extends Component {
             demoMessageRead={this.state.demoMessageRead}
             highestPage={this.state.highestPage}
             option={this.state.option}
-          />
-        );
-        break;
-      case this.state.pageNumbers.HiddenTask:
-        return (
-          <HiddenTask
-            pageNumbers={this.state.pageNumbers}
-            changePage={this.changePage}
           />
         );
         break;
@@ -341,7 +335,7 @@ export default class App extends Component {
         return (
           <MultiChoice
             options={["Paypal", "Amazon", "Revolut", "Google", "Not sure"]}
-            question="Which website sent the autofill code in the real experiment?"
+            question="Which website sent the autofill code in the experiment (not during the demo before the experiment)?"
             changePage={this.changePage}
             currentPage={this.state.pageNumbers.WhichWebsite}
             addState={this.addState}
@@ -351,27 +345,18 @@ export default class App extends Component {
           />
         );
         break;
-      case this.state.pageNumbers.Disclaimer:
-        return (
-          <Disclaimer
-            changePage={this.changePage}
-            currentPage={this.state.pageNumbers.Disclaimer}
-            pageNumbers={this.state.pageNumbers}
-          />
-        );
-        break;
       case this.state.pageNumbers.q2:
         return (
           <MultiChoice
             options={[
               "Strongly Agree",
               "Agree",
-              "Neutral",
+              "Neither Agree Nor Disagree",
               "Disagree",
               "Strongly Disagree",
               "I didn't have/use the autofill button"
             ]}
-            question="I found the autofill function easy to use and understand?"
+            question="I found the prcoess of entering the login code into the website easy to use and understand."
             changePage={this.changePage}
             currentPage={this.state.pageNumbers.q2}
             addState={this.addState}
@@ -387,11 +372,11 @@ export default class App extends Component {
             options={[
               "Strongly Agree",
               "Agree",
-              "Neutral",
+              "Neither Agree Nor Disagree",
               "Disagree",
               "Strongly Disagree"
             ]}
-            question="I think that I would like to use this system frequently"
+            question="I think that I would like to use this way of entering the login code frequently"
             changePage={this.changePage}
             currentPage={this.state.pageNumbers.q3}
             addState={this.addState}
@@ -407,11 +392,11 @@ export default class App extends Component {
             options={[
               "Strongly Agree",
               "Agree",
-              "Neutral",
+              "Neither Agree Nor Disagree",
               "Disagree",
               "Strongly Disagree"
             ]}
-            question="I found the system unnecessarily complex."
+            question="I found the process of entering the login code unnecessarily complex."
             changePage={this.changePage}
             currentPage={this.state.pageNumbers.q4}
             addState={this.addState}
@@ -427,11 +412,11 @@ export default class App extends Component {
             options={[
               "Strongly Agree",
               "Agree",
-              "Neutral",
+              "Neither Agree Nor Disagree",
               "Disagree",
               "Strongly Disagree"
             ]}
-            question="I thought the system was easy to use."
+            question="I thought the process of entering the login code was easy to use."
             changePage={this.changePage}
             currentPage={this.state.pageNumbers.q5}
             addState={this.addState}
@@ -448,11 +433,11 @@ export default class App extends Component {
             options={[
               "Strongly Agree",
               "Agree",
-              "Neutral",
+              "Neither Agree Nor Disagree",
               "Disagree",
               "Strongly Disagree"
             ]}
-            question="I think that I would need the support of a technical person to be able to use this system."
+            question="I think that I would need the support of a technical person to be able to enter the login code."
             changePage={this.changePage}
             currentPage={this.state.pageNumbers.q6}
             addState={this.addState}
@@ -468,11 +453,11 @@ export default class App extends Component {
             options={[
               "Strongly Agree",
               "Agree",
-              "Neutral",
+              "Neither Agree Nor Disagree",
               "Disagree",
               "Strongly Disagree"
             ]}
-            question="I found the various functions in this system were well integrated."
+            question="I found the various functions used to help enter the login code were well integrated."
             changePage={this.changePage}
             currentPage={this.state.pageNumbers.q7}
             addState={this.addState}
@@ -488,11 +473,11 @@ export default class App extends Component {
             options={[
               "Strongly Agree",
               "Agree",
-              "Neutral",
+              "Neither Agree Nor Disagree",
               "Disagree",
               "Strongly Disagree"
             ]}
-            question="I thought there was too much inconsistency in this system."
+            question="I thought there was too much inconsistency in entering the login code."
             changePage={this.changePage}
             currentPage={this.state.pageNumbers.q8}
             addState={this.addState}
@@ -508,11 +493,11 @@ export default class App extends Component {
             options={[
               "Strongly Agree",
               "Agree",
-              "Neutral",
+              "Neither Agree Nor Disagree",
               "Disagree",
               "Strongly Disagree"
             ]}
-            question="I would imagine that most people would learn to use this system very quickly."
+            question="I would imagine that most people would learn how to enter the login code very quickly."
             changePage={this.changePage}
             currentPage={this.state.pageNumbers.q9}
             addState={this.addState}
@@ -528,11 +513,11 @@ export default class App extends Component {
             options={[
               "Strongly Agree",
               "Agree",
-              "Neutral",
+              "Neither Agree Nor Disagree",
               "Disagree",
               "Strongly Disagree"
             ]}
-            question="I found the system very cumbersome to use."
+            question="I found the process of entering the login code very cumbersome to use."
             changePage={this.changePage}
             currentPage={this.state.pageNumbers.q10}
             addState={this.addState}
@@ -548,11 +533,11 @@ export default class App extends Component {
             options={[
               "Strongly Agree",
               "Agree",
-              "Neutral",
+              "Neither Agree Nor Disagree",
               "Disagree",
               "Strongly Disagree"
             ]}
-            question="I felt very confident using the system."
+            question="I felt very confident entering the login code."
             changePage={this.changePage}
             currentPage={this.state.pageNumbers.q11}
             addState={this.addState}
@@ -568,11 +553,11 @@ export default class App extends Component {
             options={[
               "Strongly Agree",
               "Agree",
-              "Neutral",
+              "Neither Agree Nor Disagree",
               "Disagree",
               "Strongly Disagree"
             ]}
-            question="I needed to learn a lot of things before I could get going with this system."
+            question="I needed to learn a lot of things before I could enter the login code."
             changePage={this.changePage}
             currentPage={this.state.pageNumbers.q12}
             addState={this.addState}
@@ -596,6 +581,20 @@ export default class App extends Component {
           />
         );
         break;
+      case this.state.pageNumbers.q14:
+        return (
+          <MultiChoice
+            options={["iPhone", "Android", "other"]}
+            question="What smartphone do you have?"
+            changePage={this.changePage}
+            currentPage={this.state.pageNumbers.q14}
+            addState={this.addState}
+            questionNum={14}
+            numQuestions={this.state.numQuestions}
+            questions={this.state.questions}
+          />
+        );
+        break;
       case this.state.pageNumbers.Complete:
         return (
           <Complete
@@ -606,6 +605,12 @@ export default class App extends Component {
         );
         break;
       case this.state.pageNumbers.ProlificCode:
+        if (this.state.questions["Total Time"] === undefined) {
+          this.addState(
+            "Total Time",
+            (performance.now() - this.state.tStart) / 1000
+          );
+        }
         return <ProlificCode />;
       default:
         break;

@@ -11,12 +11,17 @@ class BeginMain extends Component {
     return (
       <React.Fragment>
         <div className="centreText titleDiv">
-          <h1 className="title appleFont centreText">Begin Real Experiment</h1>
+          <h1 className="title appleFont centreText">Demo Completed</h1>
         </div>
         <div className="widthPadding explanationBox">
+          <p>You have now completed the demo.</p>
           <p>
-            You have successfully completed the demo, the main task was hidden
-            as we do not want to affect your results in the real experiment.{" "}
+            You will again be using this same saystem as shown during the demo
+            to login to the website.
+          </p>
+          <p>
+            Please login to the website as if you were logging in to a real
+            website.
           </p>
           <p>If you want to try the demo again refresh the page now.</p>
           <p>

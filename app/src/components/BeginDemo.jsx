@@ -15,20 +15,22 @@ export default class BeginDemo extends Component {
         </div>
         <div className="widthPadding explanationBox">
           <p>
-            Before the real experiment begins you will be allowed to use a demo
-            version of the system so that you can understand how to operate the
-            login system on this emulated iPhone.
+            In this experiment you will be testing the login procedure for a
+            website on an iPhone. There will be two phases.
+          </p>
+          <p>
+            Phase 1: You can freely explore a demo version of the system and its
+            user interface.
+          </p>
+          <p>
+            Phase 2: You will be asked to use the system as if you were to use
+            it on your own device to login to a real website.
           </p>
           <p>
             During the demo there will be helper boxes dotted around the page
             with helpful information regarding how to use specific parts of the
             webpage. Pay attention to these before you get to the real
             experiment.
-          </p>
-          <p>
-            This phone is limited in the fact that until you get to the
-            questionnaire at the end you will not be able to use your keyboard.
-            Copy and paste also will not work.
           </p>
         </div>
         <div className="explanationNextDiv">
