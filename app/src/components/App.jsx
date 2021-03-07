@@ -20,11 +20,7 @@ export default class App extends Component {
     super(props);
     //const rand = Math.floor(1 + Math.random() * 4);
     var rand;
-    this.getOption().then(data => {
-      console.log(data);
-      console.log(data.option);
-      this.updateOption(data.option);
-    });
+    this.setOption();
     console.log(rand);
     this.state = {
       t0: undefined,
@@ -85,6 +81,23 @@ export default class App extends Component {
     };
   }
 
+  setOption = () => {
+    if (localStorage.getItem("option") === null) {
+      console.log("First attempt, local storage empty");
+      this.getOption().then(data => {
+        console.log(data);
+        console.log(data.option);
+        this.updateOption(data.option);
+        localStorage.setItem("option", data.option);
+      });
+    } else {
+      console.log("Using Local Storage");
+      this.updateOption(localStorage.getItem("option"));
+    }
+    console.log("Checking option in questions");
+    console.log(this.state.questions.option);
+  };
+
   getOption = () => {
     const promise = axios.get(
       "http://dissertation-experiment-sb.cs.ucl.ac.uk:5000/code"
@@ -94,13 +107,10 @@ export default class App extends Component {
     return dataPromise;
   };
 
-  updateOption = (num) => {
-    console.log("In updateOption");
-    console.log(num);
-    this.setState({option: num});
+  updateOption = num => {
+    this.setState({ option: num });
     this.addState("option", num);
-  }
-     
+  };
 
   completeTask = () => {
     //change string to local ip address
