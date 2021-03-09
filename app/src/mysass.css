@@ -529,6 +529,21 @@ button:focus {
   vertical-align: middle;
   padding: 1%;
 }
+.messageHelpBox {
+  position: absolute;
+  width: 40%;
+  height: 6.5%;
+  bottom: 69.5%;
+  border-style: solid;
+  border-width: 1px;
+  background-color: white;
+  z-index: 1001;
+  text-align: center;
+  left: 20%;
+  vertical-align: middle;
+  padding: 1%;
+}
+
 .helpBoxText {
   font-size: 70%;
   line-height: 100%;
@@ -554,6 +569,20 @@ button:focus {
   border-style: solid;
   border-width: 1px;
 }
+
+.pointerMessage {
+  position: absolute;
+  width: 5%;
+  height: 2.5%;
+  left: 37.5%;
+  top: 22.7%;
+  transform: rotate(45deg);
+  background-color: white;
+  border-style: solid;
+  border-width: 1px;
+  z-index: 1000;
+}
+
 .pointerAutofill {
   position: absolute;
   width: 5%;

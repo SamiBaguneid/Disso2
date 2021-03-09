@@ -163,10 +163,26 @@ export default class AutofillPage extends Component {
     }
   };
 
+  messageHelpBox = () => {
+    if (this.props.demo) {
+      return (
+        <React.Fragment>
+          <div className="pointerMessage"></div>
+          <div className="messageHelpBox">
+            <p className="helpBoxText">
+              Incoming SMS' will be previewed for a few seconds
+            </p>
+          </div>
+        </React.Fragment>
+      );
+    }
+  };
+
   render() {
     return (
       <React.Fragment>
         {this.autofillHelpBox()}
+        {this.messageHelpBox()}
         {this.displayMessage()}
         <div className="autofillContext">
           <h1 className="secondaryColour appleFont">Type in your code</h1>
