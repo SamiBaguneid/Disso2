@@ -46,6 +46,19 @@ class MultiChoice extends Component {
           <form className="marginLR" onSubmit={this.formSubmit}>
             {this.props.options.map(option => (
               <div className="radioContainer">
+                <label className="checkMark">
+                  <input
+                    className="check"
+                    type="radio"
+                    value={option}
+                    checked={this.state.selectedOption === option}
+                    onChange={this.onValueChange}
+                  />
+                  <span>{option}</span>
+                </label>
+              </div>
+              /*
+              <div className="radioContainer">
                 <input
                   className="check"
                   type="radio"
@@ -54,7 +67,7 @@ class MultiChoice extends Component {
                   onChange={this.onValueChange}
                 />
                 <span className="checkMark">{option}</span>
-              </div>
+              </div>*/
             ))}
             <p className={this.state.error}>You need to select an option</p>
             <input

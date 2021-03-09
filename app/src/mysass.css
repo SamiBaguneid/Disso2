@@ -480,6 +480,7 @@ button:focus {
   padding: 0;
 }
 .checkMark {
+  display: inline;
   margin-left: 5%;
   line-height: 100%;
   vertical-align: middle;
