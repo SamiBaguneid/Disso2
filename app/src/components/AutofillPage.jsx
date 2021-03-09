@@ -66,7 +66,8 @@ export default class AutofillPage extends Component {
         console.log("Setting State");
         this.setState({ errorMessage: true });
       }
-    } else if (this.state.highestPage === this.props.pageNumbers.Autofill) {
+    }
+    if (this.state.highestPage === this.props.pageNumbers.Autofill) {
       if (this.state.output === "099819") {
         this.props.changePage(this.props.pageNumbers.WhichWebsite);
       } else {
@@ -80,15 +81,16 @@ export default class AutofillPage extends Component {
       this.state.output === "449585" &&
       this.props.highestPage === this.props.pageNumbers.DemoAutofill
     ) {
-      this.props.changePage(this.props.pageNumbers.BeginMain);
+      return this.props.changePage(this.props.pageNumbers.BeginMain);
     } //change lower autofill code
     if (
       this.state.output === "099819" &&
       this.props.highestPage === this.props.pageNumbers.Autofill
     ) {
-      this.props.changePage(this.props.pageNumbers.WhichWebsite);
+      return this.props.changePage(this.props.pageNumbers.WhichWebsite);
     } else {
       this.setState({ errorMessage: true });
+      this.props.incorrectCode(this.state.output);
     }
   };
 

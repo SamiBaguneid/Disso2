@@ -55,6 +55,10 @@ export default class App extends Component {
         ProlificCode: 23
       },
       questions: {
+        "Failed Demo Codes": 0,
+        "Failed Codes": 0,
+        "Phone Num Input Demo": false,
+        "Phone Num Input": false,
         option: undefined,
         "Total Time": undefined,
         "Time Taken": undefined,
@@ -82,6 +86,23 @@ export default class App extends Component {
   componentDidMount() {
     this.setOption();
   }
+
+  demoIncorrectCode = code => {
+    this.addState(
+      "Failed Demo Codes",
+      this.state.questions["Failed Demo Codes"] + 1
+    );
+    if (code === "67975") {
+      this.addState("Phone Num Input Demo", true);
+    }
+  };
+
+  incorrectCode = code => {
+    this.addState("Failed Codes", this.state.questions["Failed Codes"] + 1);
+    if (code === "67975") {
+      this.addState("Phone Num Input", true);
+    }
+  };
 
   setOption = () => {
     if (localStorage.getItem("option") === null) {
@@ -111,13 +132,16 @@ export default class App extends Component {
   updateOption = num => {
     this.setState({ option: num });
     //setTimeout(function(){console.log(this.state.option)},1000);
-    //this.addState("option", num);
+    this.addState("option", num);
   };
 
   completeTask = () => {
     //change string to local ip address
     axios
-      .post("http://dissertation-experiment-sb.cs.ucl.ac.uk:5000/", qs.stringify(this.state.questions))
+      .post(
+        "http://dissertation-experiment-sb.cs.ucl.ac.uk:5000/",
+        qs.stringify(this.state.questions)
+      )
       .then(res => {
         console.log(res);
         console.log(res.data);
@@ -285,6 +309,7 @@ export default class App extends Component {
             demoMessageRead={this.state.demoMessageRead}
             highestPage={this.state.highestPage}
             option={this.state.option}
+            incorrectCode={this.demoIncorrectCode}
           />
         );
         break;
@@ -321,10 +346,12 @@ export default class App extends Component {
             highestPage={this.state.highestPage}
             addState={this.addState}
             option={this.state.option}
+            incorrectCode={this.incorrectCode}
           />
         );
         break;
       case this.state.pageNumbers.WhichWebsite:
+        console.log(this.state.questions);
         if (this.state.questions["Time Taken"] === undefined) {
           this.addState(
             "Time Taken",
@@ -611,6 +638,7 @@ export default class App extends Component {
             (performance.now() - this.state.tStart) / 1000
           );
         }
+        console.log(this.state.questions);
         return <ProlificCode />;
       default:
         break;
