@@ -23,6 +23,7 @@ export default class Home extends Component {
           >
             <img className="messageIcon" src={messageIcon} />
           </button>
+          <p className="centreText">Messages</p>
         </div>
         <div className="safariIconDiv">
           <button
@@ -31,6 +32,7 @@ export default class Home extends Component {
           >
             <img className="safariIcon" src={safariIcon} />
           </button>
+          <p className="centreText">Experiment</p>
         </div>
         <div className="screenWidth fixHeightHome">
           <img className="homeBackground" src={homeBackground} />
