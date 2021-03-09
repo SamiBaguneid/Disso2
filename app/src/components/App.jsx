@@ -13,6 +13,7 @@ import MultiChoice from "./MultiChoice";
 import qs from "qs";
 import Complete from "./Complete";
 import ProlificCode from "./ProlificCode";
+import AttentionCheck from "./AttentionCheck";
 
 export default class App extends Component {
   constructor(props) {
@@ -45,14 +46,15 @@ export default class App extends Component {
         q6: 13,
         q7: 14,
         q8: 15,
-        q9: 16,
+        AttentionCheck: 16,
         q10: 17,
         q11: 18,
         q12: 19,
         q13: 20,
         q14: 21,
-        Complete: 22,
-        ProlificCode: 23
+        q15: 22,
+        Complete: 23,
+        ProlificCode: 24
       },
       questions: {
         "Failed Demo Codes": 0,
@@ -79,7 +81,7 @@ export default class App extends Component {
         13: undefined,
         14: undefined
       },
-      numQuestions: 14
+      numQuestions: 15
     };
   }
 
@@ -380,8 +382,7 @@ export default class App extends Component {
               "Agree",
               "Neither Agree Nor Disagree",
               "Disagree",
-              "Strongly Disagree",
-              "I didn't have/use the autofill button"
+              "Strongly Disagree"
             ]}
             question="I found the process of entering the login code into the website easy to use and understand."
             changePage={this.changePage}
@@ -403,7 +404,7 @@ export default class App extends Component {
               "Disagree",
               "Strongly Disagree"
             ]}
-            question="I think that I would like to use this way of entering the login code frequently"
+            question="I think that I would like to use this way of entering the login code frequently."
             changePage={this.changePage}
             currentPage={this.state.pageNumbers.q3}
             addState={this.addState}
@@ -514,9 +515,9 @@ export default class App extends Component {
           />
         );
         break;
-      case this.state.pageNumbers.q9:
+      case this.state.pageNumbers.AttentionCheck:
         return (
-          <MultiChoice
+          <AttentionCheck
             options={[
               "Strongly Agree",
               "Agree",
@@ -524,9 +525,9 @@ export default class App extends Component {
               "Disagree",
               "Strongly Disagree"
             ]}
-            question="I would imagine that most people would learn how to enter the login code very quickly."
+            question="Based on the text below, what option should you choose?"
             changePage={this.changePage}
-            currentPage={this.state.pageNumbers.q9}
+            currentPage={this.state.pageNumbers.AttentionCheck}
             addState={this.addState}
             questionNum={9}
             numQuestions={this.state.numQuestions}
@@ -544,7 +545,7 @@ export default class App extends Component {
               "Disagree",
               "Strongly Disagree"
             ]}
-            question="I found the process of entering the login code very cumbersome to use."
+            question="I would imagine that most people would learn how to enter the login code very quickly."
             changePage={this.changePage}
             currentPage={this.state.pageNumbers.q10}
             addState={this.addState}
@@ -564,7 +565,7 @@ export default class App extends Component {
               "Disagree",
               "Strongly Disagree"
             ]}
-            question="I felt very confident entering the login code."
+            question="I found the process of entering the login code very cumbersome to use."
             changePage={this.changePage}
             currentPage={this.state.pageNumbers.q11}
             addState={this.addState}
@@ -584,7 +585,7 @@ export default class App extends Component {
               "Disagree",
               "Strongly Disagree"
             ]}
-            question="I needed to learn a lot of things before I could enter the login code."
+            question="I felt very confident entering the login code."
             changePage={this.changePage}
             currentPage={this.state.pageNumbers.q12}
             addState={this.addState}
@@ -597,8 +598,14 @@ export default class App extends Component {
       case this.state.pageNumbers.q13:
         return (
           <MultiChoice
-            options={["18-24", "25-35", "36-49", "50+"]}
-            question="How old are you?"
+            options={[
+              "Strongly Agree",
+              "Agree",
+              "Neither Agree Nor Disagree",
+              "Disagree",
+              "Strongly Disagree"
+            ]}
+            question="I needed to learn a lot of things before I could enter the login code."
             changePage={this.changePage}
             currentPage={this.state.pageNumbers.q13}
             addState={this.addState}
@@ -611,12 +618,26 @@ export default class App extends Component {
       case this.state.pageNumbers.q14:
         return (
           <MultiChoice
-            options={["iPhone", "Android", "other"]}
-            question="What smartphone do you have?"
+            options={["18-24", "25-35", "36-49", "50+"]}
+            question="How old are you?"
             changePage={this.changePage}
             currentPage={this.state.pageNumbers.q14}
             addState={this.addState}
             questionNum={14}
+            numQuestions={this.state.numQuestions}
+            questions={this.state.questions}
+          />
+        );
+        break;
+      case this.state.pageNumbers.q15:
+        return (
+          <MultiChoice
+            options={["iPhone", "Android", "other"]}
+            question="What smartphone do you have?"
+            changePage={this.changePage}
+            currentPage={this.state.pageNumbers.q15}
+            addState={this.addState}
+            questionNum={15}
             numQuestions={this.state.numQuestions}
             questions={this.state.questions}
           />

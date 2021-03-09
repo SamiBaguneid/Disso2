@@ -385,6 +385,11 @@ button:focus {
   font-weight: bolder;
   font-size: 100%;
 }
+
+.boldQuestion {
+  font-weight: bold;
+}
+
 .questionnaireButton {
   width: 40%;
   position: absolute;
@@ -475,6 +480,11 @@ button:focus {
   margin-left: 5%;
   margin-right: 5%;
 }
+
+.marginBottomReduced {
+  margin-bottom: 2%;
+}
+
 .radioContainer {
   margin: 0;
   padding: 0;

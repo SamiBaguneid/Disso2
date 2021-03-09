@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 
-class MultiChoice extends Component {
+class AttentionCheck extends Component {
   state = {
     error: "displayNone"
   };
@@ -42,7 +42,13 @@ class MultiChoice extends Component {
             </h1>
           </div>
 
-          <p className="marginLR boldQuestion">{this.props.question}</p>
+          <p className="marginLR marginBottomReduced boldQuestion">
+            {this.props.question}
+          </p>
+          <p className="marginLR">
+            This is an easy question, please just select Disagree to show you
+            are paying attention.
+          </p>
           <form className="marginLR" onSubmit={this.formSubmit}>
             {this.props.options.map(option => (
               <div className="radioContainer">
@@ -92,4 +98,4 @@ class MultiChoice extends Component {
   }
 }
 
-export default MultiChoice;
+export default AttentionCheck;
