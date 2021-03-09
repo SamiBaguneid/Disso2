@@ -583,3 +583,13 @@ button:focus {
   margin-right: 5%;
   margin-top: 20%;
 }
+
+.floatLeft {
+  float: left;
+}
+
+.floatRight {
+  float: right;
+  z-index: 1000;
+  width: 10%;
+}

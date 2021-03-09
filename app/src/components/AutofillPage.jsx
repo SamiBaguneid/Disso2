@@ -4,9 +4,15 @@ import Number from "./number";
 import Autofill from "./autofill";
 import messageDropdown from "../images/message.PNG";
 import otherMessageDropdown from "../images/message1.png";
+import warning from "../images/warning.png";
 
 export default class AutofillPage extends Component {
-  state = { output: "", messageActive: true, keyboardActive: false };
+  state = {
+    output: "",
+    messageActive: true,
+    keyboardActive: false,
+    errorMessage: false
+  };
 
   constructor(props) {
     super(props);
@@ -51,6 +57,25 @@ export default class AutofillPage extends Component {
   };
 
   checkAutofill = () => {
+    console.log("checkAutofill");
+    /*
+    if (this.state.highestPage === this.props.pageNumbers.DemoAutofill) {
+      if (this.state.output === "449585") {
+        this.props.changePage(this.props.pageNumbers.BeginMain);
+      } else {
+        console.log("Setting State");
+        this.setState({ errorMessage: true });
+      }
+    } else if (this.state.highestPage === this.props.pageNumbers.Autofill) {
+      if (this.state.output === "099819") {
+        this.props.changePage(this.props.pageNumbers.WhichWebsite);
+      } else {
+        this.setState({ errorMessage: true });
+      }
+    }
+    console.log(this.state.errorMessage);
+    */
+
     if (
       this.state.output === "449585" &&
       this.props.highestPage === this.props.pageNumbers.DemoAutofill
@@ -62,6 +87,8 @@ export default class AutofillPage extends Component {
       this.props.highestPage === this.props.pageNumbers.Autofill
     ) {
       this.props.changePage(this.props.pageNumbers.WhichWebsite);
+    } else {
+      this.setState({ errorMessage: true });
     }
   };
 
@@ -147,11 +174,18 @@ export default class AutofillPage extends Component {
             onClick={this.openKeyboard}
             className="vertificationCodeButton"
           >
-            {this.vertificationCode()}
+            <div className="floatLeft">{this.vertificationCode()}</div>
+            <img
+              className={this.state.errorMessage ? "floatRight" : "displayNone"}
+              src={warning}
+            />
           </button>
         </div>
         <div className="continueButtonDiv">
-          <button className="submitAutofill" onClick={this.checkAutofill}>
+          <button
+            className="submitAutofill"
+            onClick={() => this.checkAutofill()}
+          >
             <p className="autofillContinueText appleFont">Continue</p>
           </button>
         </div>
