@@ -223,7 +223,32 @@ export default class App extends Component {
     }
   };
 
+  pageUpdate = () => {
+    if (localStorage.getItem("page") === null) {
+      localStorage.setItem("page", this.state.highestPage);
+      //this.postPage();
+    } else {
+      if (this.state.highestPage > localStorage.getItem("page")) {
+        localStorage.setItem("page", this.state.highestPage);
+        //this.postPage();
+      }
+    }
+  };
+
+  postPage = () => {
+    axios
+      .post(
+        "http://dissertation-experiment-sb.cs.ucl.ac.uk:5000/page",
+        qs.stringify(this.state.highestPage, this.state.option)
+      )
+      .then(res => {
+        console.log(res);
+        console.log(res.data);
+      });
+  };
+
   render() {
+    this.pageUpdate();
     return (
       <React.Fragment>
         <div className="phoneDiv">

@@ -31,6 +31,12 @@ app.post("/", function(req, res) {
   addData(req.body);
 });
 
+app.post("/page", function(req, res) {
+  console.log("here in api");
+  console.log(req.body);
+  addPage(req.body);
+});
+
 function incrementOptionsDict(option) {
   optionsDict[option] = optionsDict[option] + 1;
   fs.writeFile("options.txt", qs.stringify(optionsDict), function(err) {
@@ -41,13 +47,13 @@ function incrementOptionsDict(option) {
 
 app.get("/code", function(req, res) {
   if (optionsDict[1] <= numInSelection) {
-    res.send({option: 1});
+    res.send({ option: 1 });
   } else if (optionsDict[2] <= numInSelection) {
-    res.send({option: 2});
+    res.send({ option: 2 });
   } else if (optionsDict[3] <= numInSelection) {
-    res.send({option: 3});
+    res.send({ option: 3 });
   } else if (optionsDict[4] <= numInSelection) {
-    res.send({option: 4});
+    res.send({ option: 4 });
   } else {
     console.log("I no longer care about results");
   }
@@ -73,11 +79,19 @@ class MongoBot {
 
     this.db = this.client.db("participants");
     this.collection = this.db.collection("Answers");
+    this.collectionPages = this.db.collection("Pages");
   }
+
   async addAnswer(answer) {
     console.log(this.collection);
     const newAnswer = await this.collection.insertOne(answer);
     return newAnswer;
+  }
+
+  async addPage(page) {
+    console.log(this.collection);
+    const newPage = await this.collectionPages.insertOne(page);
+    return newPage;
   }
 
   async viewAll() {
@@ -92,6 +106,10 @@ const mongoBot = new MongoBot();
 
 async function addData(data) {
   await mongoBot.addAnswer(data);
+}
+
+async function addPage(page) {
+  await mongoBot.addPage(page);
 }
 
 async function start() {
