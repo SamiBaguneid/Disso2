@@ -83,10 +83,11 @@ export default class App extends Component {
       },
       numQuestions: 15
     };
+    this.setOption();
   }
 
   componentDidMount() {
-    this.setOption();
+    //this.setOption();
   }
 
   demoIncorrectCode = code => {
@@ -107,19 +108,21 @@ export default class App extends Component {
   };
 
   setOption = () => {
-    if (localStorage.getItem("option") === null) {
-      console.log("First attempt, local storage empty");
-      this.getOption().then(data => {
-        console.log(data);
-        console.log(typeof data.option);
-        this.updateOption(data.option);
-        localStorage.setItem("option", data.option);
-      });
-    } else {
-      console.log(this.state);
-      console.log("Using Local Storage");
-      const option = localStorage.getItem("option");
-      this.updateOption(parseInt(option));
+    if (this.state.option === undefined ){
+      if (localStorage.getItem("option") === null) {
+        console.log("First attempt, local storage empty");
+        this.getOption().then(data => {
+          console.log(data);
+          console.log(typeof data.option);
+          this.updateOption(data.option);
+          localStorage.setItem("option", data.option);
+        });
+      } else {
+        console.log(this.state);
+        console.log("Using Local Storage");
+        const option = localStorage.getItem("option");
+        this.updateOption(parseInt(option));
+      }
     }
   };
 
@@ -224,22 +227,27 @@ export default class App extends Component {
   };
 
   pageUpdate = () => {
+    const currentPage = this.state.highestPage;
     if (localStorage.getItem("page") === null) {
-      localStorage.setItem("page", this.state.highestPage);
-      //this.postPage();
+      localStorage.setItem("page", currentPage);
     } else {
-      if (this.state.highestPage > localStorage.getItem("page")) {
-        localStorage.setItem("page", this.state.highestPage);
-        //this.postPage();
+      if (currentPage > localStorage.getItem("page")) {
+        localStorage.setItem("page", currentPage);
+	if(currentPage===this.state.pageNumbers.DemoAutofill || currentPage===this.state.pageNumbers.BeginMain || currentPage===this.state.pageNumbers.Autofill || currentPage===this.state.pageNumbers.WhichWebsite){
+          this.postPage();
+        }
       }
     }
   };
 
   postPage = () => {
+    console.log("Posting Page");
+    const tempStore = {page: this.state.highestPage, option: this.state.option};
+    console.log(tempStore);
     axios
       .post(
         "http://dissertation-experiment-sb.cs.ucl.ac.uk:5000/page",
-        qs.stringify(this.state.highestPage, this.state.option)
+        qs.stringify(tempStore)
       )
       .then(res => {
         console.log(res);

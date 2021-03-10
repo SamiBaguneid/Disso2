@@ -34,6 +34,7 @@ app.post("/", function(req, res) {
 app.post("/page", function(req, res) {
   console.log("here in api");
   console.log(req.body);
+  console.log(req.body.option);
   addPage(req.body);
 });
 

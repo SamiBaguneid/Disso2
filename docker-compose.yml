@@ -13,7 +13,7 @@ services:
       dockerfile: Dockerfile
     volumes:
       - ./api/src:/usr/src/app/src
-      - ./api/options.json:/usr/src/app/options.json
+      - ./api/options.txt:/usr/src/app/options.txt
     ports:
       - 5000:5000
     links:
