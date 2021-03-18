@@ -128,7 +128,7 @@ export default class App extends Component {
 
   getOption = () => {
     const promise = axios.get(
-      "http://dissertation-experiment-sb.cs.ucl.ac.uk:5000/code"
+      "https://dissertation-experiment-sb.cs.ucl.ac.uk:5000/code"
     );
     const dataPromise = promise.then(response => response.data);
     return dataPromise;
@@ -233,7 +233,7 @@ export default class App extends Component {
     } else {
       if (currentPage > localStorage.getItem("page")) {
         localStorage.setItem("page", currentPage);
-	if(currentPage===this.state.pageNumbers.DemoAutofill || currentPage===this.state.pageNumbers.BeginMain || currentPage===this.state.pageNumbers.Autofill || currentPage===this.state.pageNumbers.WhichWebsite){
+	if(currentPage===this.state.pageNumbers.Autofill || currentPage===this.state.pageNumbers.WhichWebsite){
           this.postPage();
         }
       }
@@ -246,7 +246,7 @@ export default class App extends Component {
     console.log(tempStore);
     axios
       .post(
-        "http://dissertation-experiment-sb.cs.ucl.ac.uk:5000/page",
+        "https://dissertation-experiment-sb.cs.ucl.ac.uk:5000/page",
         qs.stringify(tempStore)
       )
       .then(res => {

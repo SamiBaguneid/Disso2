@@ -9,6 +9,12 @@ import qs from "qs";
 const app = express();
 const apiPort = 5000;
 var MongoClient = require("mongodb").MongoClient;
+var http = require("http");
+var https = require("https");
+
+var privateKey = fs.readFileSync("certs/dissertation-experiment-sb.key", "utf8");
+var certificate = fs.readFileSync("certs/dissertation-experiment-sb.chained.crt", "utf8");
+var credentials = {key: privateKey, cert: certificate};
 
 var optionsDict = {
   "1": 0,
@@ -19,7 +25,7 @@ var optionsDict = {
 
 const numInSelection = 20;
 
-app.listen(apiPort);
+//app.listen(apiPort);
 app.use(cors());
 app.use(bodyParser.urlencoded({ extended: true }));
 console.log("Listening on port 5000");
@@ -154,3 +160,6 @@ async function findAllData() {
 start();
 
 */
+
+var httpsServer = https.createServer(credentials, app);
+httpsServer.listen(5000);
