@@ -633,3 +633,37 @@ button:focus {
   z-index: 1000;
   width: 10%;
 }
+
+.noMargins {
+  margin: 0;
+  margin-left: 9%;
+  padding: 0;
+}
+
+.reducedFontConsent {
+  font-size: 60%;
+}
+
+.noMargin {
+  margin: 0;
+  padding: 0;
+  padding-bottom: 2%;
+}
+
+.reducedFontPleaseRead {
+  font-size: 90%;
+}
+
+.pushDownConsent {
+  top: 10%;
+  position: relative;
+}
+
+.pushDownConsentInfo {
+  top: 5%;
+  position: relative;
+}
+.pushDownConsentNext {
+  top: 15%;
+  position: relative;
+}

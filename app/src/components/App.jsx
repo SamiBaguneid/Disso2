@@ -14,6 +14,7 @@ import qs from "qs";
 import Complete from "./Complete";
 import ProlificCode from "./ProlificCode";
 import AttentionCheck from "./AttentionCheck";
+import Consent from "./Consent";
 
 export default class App extends Component {
   constructor(props) {
@@ -31,30 +32,31 @@ export default class App extends Component {
       pageNumbers: {
         Home: -1,
         Messages: 0,
-        Explanation: 1,
-        BeginDemo: 2,
-        DemoLogin: 3,
-        DemoAutofill: 4,
-        BeginMain: 5,
-        Login: 6,
-        Autofill: 7,
-        WhichWebsite: 8,
-        q2: 9,
-        q3: 10,
-        q4: 11,
-        q5: 12,
-        q6: 13,
-        q7: 14,
-        q8: 15,
-        AttentionCheck: 16,
-        q10: 17,
-        q11: 18,
-        q12: 19,
-        q13: 20,
-        q14: 21,
-        q15: 22,
-        Complete: 23,
-        ProlificCode: 24
+        Consent: 1,
+        Explanation: 2,
+        BeginDemo: 3,
+        DemoLogin: 4,
+        DemoAutofill: 5,
+        BeginMain: 6,
+        Login: 7,
+        Autofill: 8,
+        WhichWebsite: 9,
+        q2: 10,
+        q3: 11,
+        q4: 12,
+        q5: 13,
+        q6: 14,
+        q7: 15,
+        q8: 16,
+        AttentionCheck: 17,
+        q10: 18,
+        q11: 19,
+        q12: 20,
+        q13: 21,
+        q14: 22,
+        q15: 23,
+        Complete: 24,
+        ProlificCode: 25
       },
       questions: {
         "Failed Demo Codes": 0,
@@ -108,7 +110,7 @@ export default class App extends Component {
   };
 
   setOption = () => {
-    if (this.state.option === undefined ){
+    if (this.state.option === undefined) {
       if (localStorage.getItem("option") === null) {
         console.log("First attempt, local storage empty");
         this.getOption().then(data => {
@@ -233,7 +235,10 @@ export default class App extends Component {
     } else {
       if (currentPage > localStorage.getItem("page")) {
         localStorage.setItem("page", currentPage);
-	if(currentPage===this.state.pageNumbers.Autofill || currentPage===this.state.pageNumbers.WhichWebsite){
+        if (
+          currentPage === this.state.pageNumbers.Autofill ||
+          currentPage === this.state.pageNumbers.WhichWebsite
+        ) {
           this.postPage();
         }
       }
@@ -242,7 +247,10 @@ export default class App extends Component {
 
   postPage = () => {
     console.log("Posting Page");
-    const tempStore = {page: this.state.highestPage, option: this.state.option};
+    const tempStore = {
+      page: this.state.highestPage,
+      option: this.state.option
+    };
     console.log(tempStore);
     axios
       .post(
@@ -301,6 +309,14 @@ export default class App extends Component {
               this.updateMessageReadStatusImmediately
             }
             addState={this.addState}
+          />
+        );
+        break;
+      case this.state.pageNumbers.Consent:
+        return (
+          <Consent
+            pageNumbers={this.state.pageNumbers}
+            changePage={this.changePage}
           />
         );
         break;
