@@ -59,6 +59,7 @@ export default class App extends Component {
         ProlificCode: 25
       },
       questions: {
+        "Cheating": false,
         "Failed Demo Codes": 0,
         "Failed Codes": 0,
         "Phone Num Input Demo": false,
@@ -86,6 +87,7 @@ export default class App extends Component {
       numQuestions: 15
     };
     this.setOption();
+    this.cheatingCheck();
   }
 
   componentDidMount() {
@@ -137,6 +139,7 @@ export default class App extends Component {
   };
 
   updateOption = num => {
+    console.log("Updating option");
     this.setState({ option: num });
     //setTimeout(function(){console.log(this.state.option)},1000);
     this.addState("option", num);
@@ -243,6 +246,17 @@ export default class App extends Component {
         }
       }
     }
+  };
+
+  cheatingCheck = () => {
+    console.log("Checking")
+    console.log(localStorage.getItem("page"));
+    console.log(localStorage.getItem("page")>this.state.pageNumbers.Autofill);
+    if(localStorage.getItem("page")>this.state.pageNumbers.Autofill){
+      this.addState("Cheating", true);
+      console.log("Added Cheating");
+    }
+    console.log("Finished cheat check");
   };
 
   postPage = () => {
