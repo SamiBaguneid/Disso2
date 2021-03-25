@@ -23,7 +23,7 @@ var optionsDict = {
   "4": 0
 };
 
-const numInSelection = 20;
+const numInSelection = 1;
 
 //app.listen(apiPort);
 app.use(cors());
@@ -46,20 +46,22 @@ app.post("/page", function(req, res) {
 
 function incrementOptionsDict(option) {
   optionsDict[option] = optionsDict[option] + 1;
-  fs.writeFile("options.txt", qs.stringify(optionsDict), function(err) {
+  console.log(JSON.stringify(optionsDict));
+  fs.writeFile("options.json", JSON.stringify(optionsDict), function(err) {
     if (err) throw err;
     console.log("complete");
   });
 }
 
 app.get("/code", function(req, res) {
-  if (optionsDict[1] <= numInSelection) {
+  console.log(optionsDict);
+  if (optionsDict[1] < numInSelection) {
     res.send({ option: 1 });
-  } else if (optionsDict[2] <= numInSelection) {
+  } else if (optionsDict[2] < numInSelection) {
     res.send({ option: 2 });
-  } else if (optionsDict[3] <= numInSelection) {
+  } else if (optionsDict[3] < numInSelection) {
     res.send({ option: 3 });
-  } else if (optionsDict[4] <= numInSelection) {
+  } else if (optionsDict[4] < numInSelection) {
     res.send({ option: 4 });
   } else {
     console.log("I no longer care about results");
@@ -163,3 +165,25 @@ start();
 
 var httpsServer = https.createServer(credentials, app);
 httpsServer.listen(5000);
+
+let data = fs.readFileSync("options.json");
+let jsonData = JSON.parse(data);
+console.log(data);
+console.log(jsonData);
+/*
+console.log(jsonData.length);
+for (var i = 0; i < jsonData.length; i++) {
+  console.log(optionsDict[i]);
+  console.log(jsonData[i]);
+  optionsDict[i] = jsonData[i];
+}
+*/
+
+for (var prop in jsonData) {
+  if (!jsonData.hasOwnProperty(prop)){
+    continue;
+  }
+  optionsDict[prop] = jsonData[prop];
+}
+
+console.log(optionsDict);
