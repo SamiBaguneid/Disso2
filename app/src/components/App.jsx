@@ -21,6 +21,7 @@ export default class App extends Component {
     super(props);
     this.updateOption = this.updateOption.bind(this);
     this.state = {
+      cheatingCheck: false,
       tStart: undefined,
       t0: undefined,
       page: 1,
@@ -87,7 +88,6 @@ export default class App extends Component {
       numQuestions: 15
     };
     this.setOption();
-    this.cheatingCheck();
   }
 
   componentDidMount() {
@@ -165,6 +165,7 @@ export default class App extends Component {
     const newQuestions = { ...this.state.questions, [q]: a };
     this.setState({ questions: newQuestions });
   };
+
 
   changePage = (num, extraInfo) => {
     this.setState({ page: num });
@@ -250,9 +251,11 @@ export default class App extends Component {
 
   cheatingCheck = () => {
     console.log("Checking")
+    console.log(this.state.cheatingCheck);
     console.log(localStorage.getItem("page"));
     console.log(localStorage.getItem("page")>this.state.pageNumbers.Autofill);
     if(localStorage.getItem("page")>this.state.pageNumbers.Autofill){
+      this.setState({cheatingCheck: true});
       this.addState("Cheating", true);
       console.log("Added Cheating");
     }
@@ -335,6 +338,9 @@ export default class App extends Component {
         );
         break;
       case this.state.pageNumbers.Explanation:
+        if(this.state.option === undefined) {
+          this.updateOption(parseInt(localStorage.getItem("option")));
+        }
         if (this.state.tStart === undefined) {
           this.setState({ tStart: performance.now() });
         }
@@ -354,6 +360,9 @@ export default class App extends Component {
         );
         break;
       case this.state.pageNumbers.DemoLogin:
+        if(!this.state.cheatingCheck){
+          this.cheatingCheck();
+        }
         return (
           <Login
             pageNumbers={this.state.pageNumbers}
