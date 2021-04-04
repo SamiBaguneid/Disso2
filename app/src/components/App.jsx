@@ -282,7 +282,7 @@ export default class App extends Component {
   };
 
   calculateScore = () => {
-    var qs = [2,3,4,5,6,7,8,10,11,12,13];
+    var qs = [3,4,5,6,7,8,10,11,12,13];
     var i;
     var evens = 0;
     var odds = 0;
