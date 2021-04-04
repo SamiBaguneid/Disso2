@@ -70,6 +70,7 @@ export default class App extends Component {
         "Time Taken": undefined,
         "Autofill Used": "no",
         "Message Viewed": "no",
+        "Usability Score": undefined, 
         1: undefined,
         2: undefined,
         3: undefined,
@@ -149,7 +150,7 @@ export default class App extends Component {
     //change string to local ip address
     axios
       .post(
-        "http://dissertation-experiment-sb.cs.ucl.ac.uk:5000/",
+        "https://dissertation-experiment-sb.cs.ucl.ac.uk:5000/",
         qs.stringify(this.state.questions)
       )
       .then(res => {
@@ -280,8 +281,50 @@ export default class App extends Component {
       });
   };
 
+  calculateScore = () => {
+    var qs = [2,3,4,5,6,7,8,10,11,12,13];
+    var i;
+    var evens = 0;
+    var odds = 0;
+    var total = 0;
+    var answers = this.state.questions;
+    console.log(answers);
+    for(i=1; i<qs.length+1; i++){
+      console.log(answers[qs[i-1]]);
+      if(i%2===0){
+        evens += this.convertAgreement(answers[qs[i-1]]);
+      }else{
+        odds += this.convertAgreement(answers[qs[i-1]]);
+      }
+    }
+    console.log(evens);
+    console.log(odds);
+    console.log(total);
+    total = 25-evens + odds-5
+    console.log(total);
+    total *= 2.5
+    console.log(total);
+    this.addState("Usability Score", total);
+  }
+
+  convertAgreement = (value) => {
+    console.log(value);
+    switch(value){
+      case "Strongly Agree":
+        return 5;
+      case "Agree":
+        return 4;
+      case "Neither Agree Nor Disagree":
+        return 3;
+      case "Disagree":
+        return 2;
+      case "Strongly Disagree":
+        return 1;
+    }
+  }
+
   render() {
-    this.pageUpdate();
+    //this.pageUpdate();
     return (
       <React.Fragment>
         <div className="phoneDiv">
@@ -716,6 +759,9 @@ export default class App extends Component {
         );
         break;
       case this.state.pageNumbers.Complete:
+        if(this.state.questions["Usability Score"]===undefined){
+          this.calculateScore();
+        }
         return (
           <Complete
             pageNumbers={this.state.pageNumbers}
