@@ -234,18 +234,21 @@ export default class App extends Component {
   };
 
   pageUpdate = () => {
+    console.log("Updating Page");
     const currentPage = this.state.highestPage;
     if (localStorage.getItem("page") === null) {
       localStorage.setItem("page", currentPage);
     } else {
       if (currentPage > localStorage.getItem("page")) {
         localStorage.setItem("page", currentPage);
+        /*
         if (
           currentPage === this.state.pageNumbers.Autofill ||
           currentPage === this.state.pageNumbers.WhichWebsite
         ) {
           this.postPage();
         }
+        */
       }
     }
   };
@@ -324,7 +327,7 @@ export default class App extends Component {
   }
 
   render() {
-    //this.pageUpdate();
+    this.pageUpdate();
     return (
       <React.Fragment>
         <div className="phoneDiv">
