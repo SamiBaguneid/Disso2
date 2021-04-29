@@ -8,3 +8,13 @@ View Results
 5) Run mongo "mongodb://user:password@mongodb:27017/participants?authSource=admin"
 6) Results are in the collection Answers
 7) One example command is db.Answers.find({}) to view all the results
+
+
+Run Experiment
+
+1) cd scripts
+2) ./run.sh
+
+Run Website Only
+
+1) docker-compose -f docker-compose-frontend-only.yml up
