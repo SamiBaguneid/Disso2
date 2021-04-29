@@ -23,9 +23,9 @@ var optionsDict = {
   "4": 0
 };
 
-const numInSelection = 1;
+const numInSelection = 25;
 
-//app.listen(apiPort);
+app.listen(apiPort);
 app.use(cors());
 app.use(bodyParser.urlencoded({ extended: true }));
 console.log("Listening on port 5000");
@@ -163,8 +163,8 @@ start();
 
 */
 
-var httpsServer = https.createServer(credentials, app);
-httpsServer.listen(5000);
+//var httpsServer = https.createServer(credentials, app);
+//httpsServer.listen(5000);
 
 let data = fs.readFileSync("options.json");
 let jsonData = JSON.parse(data);

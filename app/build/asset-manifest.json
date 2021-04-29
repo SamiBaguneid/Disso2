@@ -1,8 +1,8 @@
 {
   "files": {
-    "main.css": "/static/css/main.6597e23a.chunk.css",
-    "main.js": "/static/js/main.b3d19bbe.chunk.js",
-    "main.js.map": "/static/js/main.b3d19bbe.chunk.js.map",
+    "main.css": "/static/css/main.5523815b.chunk.css",
+    "main.js": "/static/js/main.1d3b7af0.chunk.js",
+    "main.js.map": "/static/js/main.1d3b7af0.chunk.js.map",
     "runtime-main.js": "/static/js/runtime-main.02b0d242.js",
     "runtime-main.js.map": "/static/js/runtime-main.02b0d242.js.map",
     "static/css/2.658248ec.chunk.css": "/static/css/2.658248ec.chunk.css",
@@ -10,10 +10,11 @@
     "static/js/2.10c01a09.chunk.js.map": "/static/js/2.10c01a09.chunk.js.map",
     "index.html": "/index.html",
     "static/css/2.658248ec.chunk.css.map": "/static/css/2.658248ec.chunk.css.map",
-    "static/css/main.6597e23a.chunk.css.map": "/static/css/main.6597e23a.chunk.css.map",
+    "static/css/main.5523815b.chunk.css.map": "/static/css/main.5523815b.chunk.css.map",
     "static/js/2.10c01a09.chunk.js.LICENSE.txt": "/static/js/2.10c01a09.chunk.js.LICENSE.txt",
     "static/media/emptyMessages.060837d7.png": "/static/media/emptyMessages.060837d7.png",
     "static/media/homeBackground.0e6b7f0f.png": "/static/media/homeBackground.0e6b7f0f.png",
+    "static/media/information.b091deff.pdf": "/static/media/information.b091deff.pdf",
     "static/media/iphone8.17a9a3f2.png": "/static/media/iphone8.17a9a3f2.png",
     "static/media/message.81cfa7fe.PNG": "/static/media/message.81cfa7fe.PNG",
     "static/media/message1.7212a6ca.png": "/static/media/message1.7212a6ca.png",
@@ -28,7 +29,7 @@
     "static/js/runtime-main.02b0d242.js",
     "static/css/2.658248ec.chunk.css",
     "static/js/2.10c01a09.chunk.js",
-    "static/css/main.6597e23a.chunk.css",
-    "static/js/main.b3d19bbe.chunk.js"
+    "static/css/main.5523815b.chunk.css",
+    "static/js/main.1d3b7af0.chunk.js"
   ]
 }

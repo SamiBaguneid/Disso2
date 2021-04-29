@@ -32,19 +32,19 @@ class Autofill extends Component {
       case 2:
         return (
           <React.Fragment>
-            <div class="floatLeft leftBox">
+            <div class="floatLeft pushForward leftBox">
               {" "}
               <button
-                className="appleFont autofillButton"
+                className="appleFont pushForwardFurther autofillButton"
                 onClick={() => this.props.addAutofill(response)}
               >
                 <p className="noSpacing reducedFontSize">From Messages</p>
                 <p className="noSpacing">{response}</p>
               </button>
             </div>
-            <div className="appleFont autofillButton floatRight rightBox">
-              <p className="noSpacing reducedFontSize">Keywords:</p>
-              <p className="noSpacing">{name}</p>
+            <div className="appleFont autofillButton floatRight pushToLeft pullBack rightBox">
+              <p className="noSpacing pullBack reducedFontSize">Keywords:</p>
+              <p className="noSpacing pullBack">{name}</p>
             </div>
           </React.Fragment>
         );

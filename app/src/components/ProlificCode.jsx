@@ -10,7 +10,7 @@ class ProlificCode extends Component {
         </div>
         <div class="centreCode">
           <h1>Prolific Code</h1>
-          <h1>8344C8D9</h1>
+          <h1>69E1A8B7</h1>
         </div>
         <div class="centreText pushBelowCode">
           <p>

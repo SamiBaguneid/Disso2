@@ -133,7 +133,7 @@ export default class App extends Component {
 
   getOption = () => {
     const promise = axios.get(
-      "https://dissertation-experiment-sb.cs.ucl.ac.uk:5000/code"
+      "http://dissertation-experiment-sb.cs.ucl.ac.uk:5000/code"
     );
     const dataPromise = promise.then(response => response.data);
     return dataPromise;
@@ -150,7 +150,7 @@ export default class App extends Component {
     //change string to local ip address
     axios
       .post(
-        "https://dissertation-experiment-sb.cs.ucl.ac.uk:5000/",
+        "http://dissertation-experiment-sb.cs.ucl.ac.uk:5000/",
         qs.stringify(this.state.questions)
       )
       .then(res => {
@@ -275,7 +275,7 @@ export default class App extends Component {
     console.log(tempStore);
     axios
       .post(
-        "https://dissertation-experiment-sb.cs.ucl.ac.uk:5000/page",
+        "http://dissertation-experiment-sb.cs.ucl.ac.uk:5000/page",
         qs.stringify(tempStore)
       )
       .then(res => {
@@ -765,6 +765,9 @@ export default class App extends Component {
         if(this.state.questions["Usability Score"]===undefined){
           this.calculateScore();
         }
+        if(this.state.questions["Total Time"] === undefined) {
+          this.addState("Total Time", (performance.now() - this.state.tStart)/1000);
+        }
         return (
           <Complete
             pageNumbers={this.state.pageNumbers}
@@ -774,13 +777,6 @@ export default class App extends Component {
         );
         break;
       case this.state.pageNumbers.ProlificCode:
-        if (this.state.questions["Total Time"] === undefined) {
-          this.addState(
-            "Total Time",
-            (performance.now() - this.state.tStart) / 1000
-          );
-        }
-        console.log(this.state.questions);
         return <ProlificCode />;
       default:
         break;

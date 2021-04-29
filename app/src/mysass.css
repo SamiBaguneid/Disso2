@@ -667,3 +667,20 @@ button:focus {
   top: 15%;
   position: relative;
 }
+
+.pushForward {
+  z-index: 1000;
+}
+
+.pushForwardFurther {
+  z-index: 2000;
+}
+
+.pullBack {
+  z-index: 10;
+}
+
+.pushToLeft {
+  padding-right: 40%;
+  padding-left: 0%;
+}
